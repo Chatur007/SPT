@@ -21,7 +21,7 @@ export default function WhatsAppButton() {
         sm:px-4 sm:py-2 px-2 py-1"
       >
         <div className="flex items-center gap-2 text-white">
-          <FontAwesomeIcon icon={faPlaySolid} className="text-xs sm:text-sm" />
+          {/* <FontAwesomeIcon icon={faPlaySolid} className="text-xs sm:text-sm" /> */}
           <div className="text-[10px] sm:text-xs font-bold">
             <div className="leading-tight">FREE DEMO</div>
             <div className="leading-tight">OFFLINE CLASS</div>

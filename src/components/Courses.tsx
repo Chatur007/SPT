@@ -156,11 +156,7 @@ export default function Courses() {
   const [currentSlide, setCurrentSlide] = useState(2); // Start at index 2 (first real course after clones)
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
-  const [slidePercent, setSlidePercent] = useState<number>(() => {
-    if (typeof window === 'undefined') return 50;
-    // use single card on narrow phones (<= 420px) such as 360x640 and 375x667
-    return window.matchMedia('(max-width: 420px)').matches ? 100 : 50;
-  });
+  const [isDesktop, setIsDesktop] = useState(false);
   
   const nielitCourses = [
     {
@@ -276,21 +272,14 @@ export default function Courses() {
     return () => clearInterval(timer);
   }, [isHovered]);
 
-  // update slidePercent when viewport crosses mobile breakpoint
+  // Track screen size for responsive transform
   useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const mq = window.matchMedia('(max-width: 639.98px)');
-    const handler = (e: MediaQueryListEvent) => {
-      setSlidePercent(e.matches ? 100 : 50);
+    const updateScreenSize = () => {
+      setIsDesktop(window.innerWidth >= 640);
     };
-    // initial: call with current matches value
-    handler({ matches: mq.matches } as MediaQueryListEvent);
-    if (mq.addEventListener) mq.addEventListener('change', handler);
-    else mq.addListener(handler as unknown as (this: MediaQueryList, ev: MediaQueryListEvent) => void);
-    return () => {
-      if (mq.removeEventListener) mq.removeEventListener('change', handler);
-      else mq.removeListener(handler as unknown as (this: MediaQueryList, ev: MediaQueryListEvent) => void);
-    };
+    updateScreenSize();
+    window.addEventListener('resize', updateScreenSize);
+    return () => window.removeEventListener('resize', updateScreenSize);
   }, []);
 
   const nextSlide = () => {
@@ -407,14 +396,17 @@ export default function Courses() {
             <div className="overflow-hidden">
               <div 
                 className={`flex items-stretch ${isTransitioning ? 'transition-transform duration-1000 ease-in-out' : ''}`}
-                style={{ transform: `translateX(-${currentSlide * slidePercent}%)` }}
+                style={{ 
+                  transform: isDesktop 
+                    ? `translateX(-${currentSlide * 50}%)` 
+                    : `translateX(-${currentSlide * 100}%)`,
+                }}
                 onTransitionEnd={handleTransitionEnd}
               >
                 {clonedCourses.map((course, index) => (
                       <div 
                         key={course.id} 
-                        className={`${slidePercent === 100 ? 'w-full' : 'w-1/2'} flex-shrink-0 px-4 h-full`}
-                        style={{ flexBasis: slidePercent === 100 ? '100%' : '50%' }}
+                        className="w-full sm:w-1/2 flex-shrink-0 px-4 h-full"
                       >
                         <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 p-3 sm:p-5 lg:p-8 min-h-[260px] sm:min-h-[300px] lg:min-h-[260px] flex flex-col justify-between cursor-pointer h-full">
                                      <div className="flex flex-col h-full">

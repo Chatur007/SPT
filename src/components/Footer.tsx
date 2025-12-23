@@ -116,6 +116,7 @@ export default function Footer({ scrollToSection }: FooterProps) {
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
+                allow="geolocation"
                 title="Google Map Location"
               ></iframe>
             </div>

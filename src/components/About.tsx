@@ -62,11 +62,12 @@ export default function About() {
               <div className="overflow-hidden rounded-2xl shadow-2xl bg-black/5">
                 {/* Auto-playing video without sound */}
                 <iframe
-                  src={`${videoEmbed}?autoplay=1&mute=${isMuted ? 1 : 0}&loop=1&rel=0&controls=0`}
-                  className="w-full h-64 sm:h-80 md:h-72 lg:h-90 xl:h-90 rounded-2xl"
-                  frameBorder="0"
-                  allow="autoplay; muted"
+                  src={`${videoEmbed}?autoplay=1&mute=${isMuted ? 1 : 0}&loop=1&rel=0&controls=0&enablejsapi=1`}
+                  className="w-full h-64 sm:h-80 md:h-72 lg:h-90 xl:h-90 rounded-2xl border-0"
+                  allow="autoplay; encrypted-media; picture-in-picture"
+                  allowFullScreen
                   title="About video"
+                  loading="lazy"
                 />
                 {/* Mute/Unmute button */}
                 <button
@@ -94,10 +95,10 @@ export default function About() {
               <div className="relative w-[95%] md:w-[80%] lg:w-[70%] max-h-[90vh] bg-transparent">
                 <div className="relative pt-[56.25%]">
                   <iframe
-                    src={`${videoEmbed}?autoplay=1&rel=0`}
-                    className="absolute inset-0 w-full h-full rounded-lg shadow-xl"
-                    frameBorder="0"
-                    allow="autoplay; fullscreen"
+                    src={`${videoEmbed}?autoplay=1&rel=0&enablejsapi=1`}
+                    className="absolute inset-0 w-full h-full rounded-lg shadow-xl border-0"
+                    allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+                    allowFullScreen
                     title="About video"
                   />
                 </div>

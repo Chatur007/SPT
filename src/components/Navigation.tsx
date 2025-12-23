@@ -50,7 +50,7 @@ export default function Navigation({
       <div className="max-w-full mx-auto px-5 flex items-center py-4">
         {/* Logo and Company Name - Left Side */}
         <div className="flex items-center gap-3 mr-auto">
-          <h1 className="text-white text-xl font-bold">Sharp Programmer Technology (SPT)</h1>
+          <h1 className="text-white text-xl font-bold">Sharp Programmer Technology</h1>
         </div>
         
         {/* Navigation Items and Phone - Right Side */}
@@ -222,11 +222,9 @@ export default function Navigation({
                 src={onlineTestSrc}
                 width="100%"
                 height="100%"
-                frameBorder={0}
-                marginHeight={0}
-                marginWidth={0}
                 title="Online Test Form"
-                className="w-full h-full"
+                className="w-full h-full border-0"
+                loading="lazy"
               >
                 Loading…
               </iframe>

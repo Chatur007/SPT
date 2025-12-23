@@ -57,7 +57,7 @@ export default function Hero({ scrollToSection }: HeroProps = {}) {
         <div className="mb-12">
           <button 
             onClick={() => scrollToSection && scrollToSection('contact')}
-            className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 hover:transform hover:-translate-y-1 cursor-pointer"
+            className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-4 rounded-lg font-bold text-sm sm:text-base md:text-lg transition-all duration-300 hover:transform hover:-translate-y-1 cursor-pointer"
           >
             CONTACT US
           </button>

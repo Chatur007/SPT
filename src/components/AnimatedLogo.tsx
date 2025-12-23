@@ -38,10 +38,10 @@ export default function AnimatedLogo() {
 
   return (
     <div className="flex items-center">
-      <span className="text-3xl font-bold text-Red whitespace-nowrap transition-all duration-200 ease-in-out">
+      <span className="text-xl sm:text-2xl md:text-3xl font-bold text-Red sm:whitespace-nowrap transition-all duration-200 ease-in-out leading-tight sm:leading-normal">
         {displayedText}
         <span
-          className={`inline-block w-0.5 h-7 bg-black ml-1 pb-0 mx-0 transition-opacity duration-200  ${
+          className={`inline-block w-0.5 h-5 sm:h-6 md:h-7 bg-black ml-1 pb-0 mx-0 transition-opacity duration-200  ${
             showCursor ? "opacity-100" : "opacity-0"
           }`}
         ></span>
